@@ -25,7 +25,6 @@ public class CharacterController : MonoBehaviour
         boxCollider = GetComponent<PolygonCollider2D>();
         animator = GetComponent<Animator>();
         pantallaControles = GameObject.Find("Canvas").GetComponent<PantallaControles>();
-        pantallaControles.AbrirControles();
         escalaGravedad = rigidBody.gravityScale;
 
     }
