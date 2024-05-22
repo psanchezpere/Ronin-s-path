@@ -14,7 +14,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float multiplicadorGravedad;
     public int saltosMaximos = 1;
     private int contadorSaltos = 0;
-    private PantallaControles pantallaControles;
+    private MenuPausa menuPausa;
     private Rigidbody2D rigidBody;
     private PolygonCollider2D boxCollider;
     private bool mirandoDerecha = true;
@@ -24,7 +24,7 @@ public class CharacterController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<PolygonCollider2D>();
         animator = GetComponent<Animator>();
-        pantallaControles = GameObject.Find("Canvas").GetComponent<PantallaControles>();
+        menuPausa = GameObject.Find("Canvas").GetComponent<MenuPausa>();
         escalaGravedad = rigidBody.gravityScale;
 
     }
@@ -32,7 +32,7 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!pantallaControles.IsOpen()){
+        if (!menuPausa.IsOpen()){
             ProcesarMovimiento();
         }
     }
@@ -57,7 +57,7 @@ public class CharacterController : MonoBehaviour
             }else if(Input.GetKeyDown(KeyCode.N)){
                 animator.SetBool("isDefense", true);
             }else if(Input.GetKeyDown(KeyCode.T)){
-                pantallaControles.AbrirControles();
+                menuPausa.OpenControls();
             }else{
                 if (IsDefenseRelease() && 
                 (IsRunningOrIdle() || (!IsRunningOrIdle() && IsFinishAnimation()))){
