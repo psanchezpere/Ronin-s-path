@@ -8909,7 +8909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isIdle: 0
   velocidadDeMovimiento: 10
-  distanciaAbajo: 6.45
+  distanciaAbajo: 7.01
   controladorAbajo: {fileID: 1509364078}
   mirandoALaDerecha: 1
 --- !u!50 &379839501
@@ -31833,7 +31833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isIdle: 0
   velocidadDeMovimiento: 10
-  distanciaAbajo: 6.38
+  distanciaAbajo: 7.35
   controladorAbajo: {fileID: 128507178}
   mirandoALaDerecha: 1
 --- !u!50 &1723193547
