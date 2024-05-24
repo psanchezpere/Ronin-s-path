@@ -24,7 +24,7 @@ public class CharacterController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<PolygonCollider2D>();
         animator = GetComponent<Animator>();
-        menuPausa = GameObject.Find("Canvas").GetComponent<MenuPausa>();
+        menuPausa = GameObject.Find("CanvasUI").GetComponent<MenuPausa>();
         escalaGravedad = rigidBody.gravityScale;
 
     }
@@ -56,7 +56,7 @@ public class CharacterController : MonoBehaviour
                 animator.SetBool("isFarAttack", true);
             }else if(Input.GetKeyDown(KeyCode.N)){
                 animator.SetBool("isDefense", true);
-            }else if(Input.GetKeyDown(KeyCode.T)){
+            }else if(Input.GetKeyDown(KeyCode.Escape)){
                 menuPausa.OpenControls();
             }else{
                 if (IsDefenseRelease() && 
