@@ -108,7 +108,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: cofre_0
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 18
+        width: 161
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d4d4690c24d5b6458b832c79a9ab01d
+      internalID: -1511923207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cofre_1
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 18
+        width: 161
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb55e59e0d9883246b2d0e41a1919233
+      internalID: 1258093746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cofre_2
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 18
+        width: 161
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fdd7125d6676bd44bd70e05b9d2af54
+      internalID: 1147986940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cofre_3
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 18
+        width: 161
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66c755ad147b37f45b79a64abb8f6a73
+      internalID: -499693019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +203,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cofre_0: -1511923207
+      cofre_1: 1258093746
+      cofre_2: 1147986940
+      cofre_3: -499693019
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

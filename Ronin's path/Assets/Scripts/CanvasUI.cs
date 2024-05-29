@@ -7,6 +7,7 @@ public class CanvasUI : MonoBehaviour
 
     [SerializeField] private GameObject menuPausa;
     [SerializeField] private GameObject levelName;
+    [SerializeField] private GameObject interfazGetasSaltoDoble;
     [SerializeField] private CanvasGroup canvasLevelName;
     float secondsCounter=0;
     float secondsToCount=6;
@@ -48,4 +49,10 @@ public class CanvasUI : MonoBehaviour
     public bool IsOpen(){
         return menuPausa.activeInHierarchy;
     }
+
+    public void OpenInterfazGetasSaltoDoble(){
+        Time.timeScale = 0f;
+        interfazGetasSaltoDoble.SetActive(true);
+    }
+    
 }

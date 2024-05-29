@@ -6,7 +6,7 @@ using TMPro;
 public class Dinero : MonoBehaviour
 {
 
-    private float dineroAcumulado;
+    private int dineroAcumulado;
 
     private TextMeshProUGUI textMesh;
 
@@ -15,17 +15,17 @@ public class Dinero : MonoBehaviour
     void Start()
     {
         textMesh = GetComponent<TextMeshProUGUI>();
+        textMesh.text = "両 " +dineroAcumulado.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        dineroAcumulado += Time.deltaTime;
         // Ponemos delante el simbolo del Ryō , moneda de oro japonesa de la época feudal
-        textMesh.text = "両 " +dineroAcumulado.ToString("0");
+        textMesh.text = "両 " +dineroAcumulado.ToString();
     }
 
-    public void SumarDinero(float dineroGanado){
+    public void SumarDinero(int dineroGanado){
         dineroAcumulado += dineroGanado;
     }
 

@@ -21,12 +21,15 @@ public class CharacterController : MonoBehaviour
     private bool mirandoDerecha = true;
     private Animator animator;
 
+    private StoryController storyController;
+
     private void Start(){
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<PolygonCollider2D>();
         animator = GetComponent<Animator>();
         canvasUI = GameObject.Find("CanvasUI").GetComponent<CanvasUI>();
         escalaGravedad = rigidBody.gravityScale;
+        storyController = GameObject.Find("StoryController").GetComponent<StoryController>();
 
     }
 
@@ -36,6 +39,9 @@ public class CharacterController : MonoBehaviour
         if (!canvasUI.IsOpen()){
             canvasUI.UpdateLevelName();
             ProcesarMovimiento();
+        }
+        if(storyController.checkMainMission(1)){
+            saltosMaximos = 2;
         }
     }
 
