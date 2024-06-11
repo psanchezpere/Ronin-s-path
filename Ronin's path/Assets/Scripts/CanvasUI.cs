@@ -8,7 +8,9 @@ public class CanvasUI : MonoBehaviour
     [SerializeField] private GameObject menuPausa;
     [SerializeField] private GameObject levelName;
     [SerializeField] private GameObject interfazGetasSaltoDoble;
+    [SerializeField] private GameObject interfazFingirMuerte;
     [SerializeField] private CanvasGroup canvasLevelName;
+    private DataController dataController;
     float secondsCounter=0;
     float secondsToCount=6;
 
@@ -27,9 +29,10 @@ public class CanvasUI : MonoBehaviour
                 canvasLevelName.alpha+=Time.deltaTime;
             }
         }
+        
    }
     private void Start(){
-
+        dataController = GameObject.Find("DataController").GetComponent<DataController>();
     }
 
     public void CloseGame(){
@@ -45,14 +48,25 @@ public class CanvasUI : MonoBehaviour
         Time.timeScale = 1f;
         menuPausa.SetActive(false);
     }
+    public void SaveGame(){
+        dataController.SaveGame();
+    }
 
     public bool IsOpen(){
-        return menuPausa.activeInHierarchy;
+        if(menuPausa != null){
+            return menuPausa.activeInHierarchy;
+        }
+        return false;
     }
 
     public void OpenInterfazGetasSaltoDoble(){
         Time.timeScale = 0f;
         interfazGetasSaltoDoble.SetActive(true);
+    }
+
+    public void OpenInterfazFingirMuerte(){
+        Time.timeScale = 0f;
+        interfazFingirMuerte.SetActive(true);
     }
     
 }

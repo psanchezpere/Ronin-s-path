@@ -29,4 +29,8 @@ public class Dinero : MonoBehaviour
         dineroAcumulado += dineroGanado;
     }
 
+    public int TotalDinero(){
+        return dineroAcumulado;
+    }
+
 }

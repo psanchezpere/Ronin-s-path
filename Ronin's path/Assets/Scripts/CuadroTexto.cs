@@ -23,7 +23,7 @@ public class CuadroTexto : MonoBehaviour
 
     void Update()
     {
-        if (isPlayerInRange && (dialogueText.text != dialogueLines[lineIndex]) && !animator.GetBool("isChestOpen")){
+        if (isPlayerInRange && (dialogueText.text != dialogueLines[lineIndex])){
             if (!didDialogueStart){
                 StartDialogue();
             }else if (dialogueText.text == dialogueLines[lineIndex]){

@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class CharacterController : MonoBehaviour
 {
 
+    private static CharacterController Instance;
     public float velocidad;
     public float fuerzaSalto;
     public LayerMask capaSuelo;
@@ -23,27 +25,44 @@ public class CharacterController : MonoBehaviour
 
     private StoryController storyController;
 
-    private void Start(){
-        rigidBody = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<PolygonCollider2D>();
-        animator = GetComponent<Animator>();
-        canvasUI = GameObject.Find("CanvasUI").GetComponent<CanvasUI>();
-        escalaGravedad = rigidBody.gravityScale;
-        storyController = GameObject.Find("StoryController").GetComponent<StoryController>();
-
+    private void Awake(){
+        if (CharacterController.Instance ==null)
+        {
+            CharacterController.Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }else{
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!canvasUI.IsOpen()){
-            canvasUI.UpdateLevelName();
-            ProcesarMovimiento();
-        }
-        if(storyController.checkMainMission(1)){
-            saltosMaximos = 2;
+        // Se comprueba unicamente si no está en el menu de inicio
+        if(SceneManager.GetActiveScene().buildIndex != 0){
+            if(canvasUI == null){
+                loadComponents();
+            }
+
+            if (!canvasUI.IsOpen()){
+                canvasUI.UpdateLevelName();
+                ProcesarMovimiento();
+            }
+            if(storyController.CheckMainMission(1)){
+                saltosMaximos = 2;
+            }
         }
     }
+
+    private void loadComponents(){
+        rigidBody = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<PolygonCollider2D>();
+        animator = GetComponent<Animator>();
+        escalaGravedad = 1;
+        canvasUI = GameObject.Find("CanvasUI").GetComponent<CanvasUI>();
+        storyController = GameObject.Find("StoryController").GetComponent<StoryController>();
+    }
+
 
     bool EstaEnElSuelo(){
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, new Vector2(boxCollider.bounds.size.x, boxCollider.bounds.size.y), 0f, Vector2.down, 0.2f, capaSuelo);
@@ -51,7 +70,7 @@ public class CharacterController : MonoBehaviour
     }
 
     void DeteccionAccion(){
-
+    if(IsNotDead()){
         if(EstaEnElSuelo() && IsDefenseRelease()){
             if(Input.GetKeyDown(KeyCode.Space)){
                 RealizarSalto();
@@ -66,6 +85,8 @@ public class CharacterController : MonoBehaviour
                 animator.SetBool("isDefense", true);
             }else if(Input.GetKeyDown(KeyCode.Escape)){
                 canvasUI.OpenControls();
+            }else if(Input.GetKeyDown(KeyCode.X) && storyController.CheckMainMission(2)){
+                animator.SetBool("isDead", true);
             }else{
                 if (IsDefenseRelease() && 
                 (IsRunningOrIdle() || (!IsRunningOrIdle() && IsFinishAnimation()))){
@@ -83,11 +104,17 @@ public class CharacterController : MonoBehaviour
         }else if(!Input.GetKey(KeyCode.Space)){
             CancelarSalto();
         }
+}
+        
     }
 
     bool IsDefenseRelease(){
         return ((!animator.GetCurrentAnimatorStateInfo(0).IsName("Shield") && animator.GetBool("isDefense") != true) ||
         (Input.GetKeyUp(KeyCode.N) && animator.GetCurrentAnimatorStateInfo(0).IsName("Shield")));
+    }
+
+    public bool IsNotDead(){
+        return (!animator.GetCurrentAnimatorStateInfo(0).IsName("Dead") && animator.GetBool("isDead") != true);
     }
     bool IsFinishAnimation(){
        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.99f;
@@ -116,6 +143,7 @@ public class CharacterController : MonoBehaviour
             (IsRunningOrIdle() || (!IsRunningOrIdle() && IsFinishAnimation()))){
                 if (inputMovimiento != 0f && EstaEnElSuelo()){
                     animator.SetBool("isRunning", true);
+                    animator.SetBool("isDead", false);
                 }else{
                     animator.SetBool("isRunning", false);
                 }
@@ -158,5 +186,17 @@ public class CharacterController : MonoBehaviour
             rigidBody.AddForce(vector2, ForceMode2D.Impulse);
         }
     }
+
+    public void MoveCharacter(Vector3 position){
+        transform.position = new Vector3(position.x, position.y, position.z);
+    }
+
+    public float GetActualPositionX(){
+        return transform.position.x;
+    }
+    public float GetActualPositionY(){
+        return transform.position.y;
+    }
+
 
 }

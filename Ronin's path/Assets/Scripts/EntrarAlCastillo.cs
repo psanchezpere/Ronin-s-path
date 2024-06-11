@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class EntrarAlCastillo : MonoBehaviour
 {
-
-    private CambiarEscena cambiarEscena;
-
     private CuadroTexto puertaCastillo;
 
 
@@ -14,14 +11,13 @@ public class EntrarAlCastillo : MonoBehaviour
     private void Start()
     {
         puertaCastillo = GameObject.Find("PuertaCastillo").GetComponent<CuadroTexto>();
-        cambiarEscena = GameObject.Find("EntrarAlCastillo").GetComponent<CambiarEscena>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if(puertaCastillo.checkInteraction()){
-            cambiarEscena.CambiarNivel();
+            SceneManager.LoadScene(2);
         }
     }
 }
