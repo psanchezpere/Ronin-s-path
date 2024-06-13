@@ -40,11 +40,13 @@ public class DataController : MonoBehaviour
     }
 
     public void SaveGame(){
+        Debug.Log("Guardando Juego");
         LoadGameObjects();
         DatosJuego nuevosDatos = new DatosJuego(){
             posicionX = characterController.GetActualPositionX(),
             posicionY = characterController.GetActualPositionY(),
             scene = sceneController.GetActualScene(),
+            dinero = storyController.GetActualMoney(),
             mainMissions = storyController.GetMainMissions(),
             secondaryMissions = storyController.GetSecondaryMissions()
         };

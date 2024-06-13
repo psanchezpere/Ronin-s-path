@@ -73,8 +73,12 @@ public class StoryController : MonoBehaviour
                 baulBosqueDinero = GameObject.Find("BaulBosqueDinero").GetComponent<BaulController>();
                 baulBosqueDinero_CuadroTexto = GameObject.Find("BaulBosqueDinero").GetComponent<CuadroTexto>();
             }
+            
+        }
+        if (canvasUI != null){
             dineroNivelAnterior = dinero.TotalDinero();
         }
+
     }
 
 
@@ -125,9 +129,12 @@ public class StoryController : MonoBehaviour
     public List<double> GetMainMissions(){
         return mainMissions;
     }
+     public int GetActualMoney(){
+        return dinero.TotalDinero();
+    }
     public void Initialize(DatosJuego datosJuego){
         this.mainMissions = datosJuego.mainMissions;
         this.secondaryMissions = datosJuego.secondaryMissions;
-        this.dinero = datosJuego.dinero;    
+        dineroNivelAnterior = datosJuego.dinero;
     }
 }

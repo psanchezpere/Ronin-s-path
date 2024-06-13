@@ -286,7 +286,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 317394771}
         m_TargetAssemblyTypeName: MenuInicio, Assembly-CSharp
-        m_MethodName: Salir
+        m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -11,5 +11,5 @@ public class DatosJuego
     public int scene;
     public List<double> mainMissions;
     public List<double> secondaryMissions;
-    public Dinero dinero;
+    public int dinero;
 }
